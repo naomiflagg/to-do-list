@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="flaggrid.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/63e040079e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="position-fixed flex justify-content-between align-items-center">
+    <img src="logo.png" alt="to do logo">
+    <i class="fas fa-plus"></i>
+    <ul class="add-items no-display">
+      <li>New list</li>
+      <li>New task</li>
+    </ul>
+  </nav>
+  <section class="flex">
+    <ul class="sidebar no-display">
+      <li class="all">All</li>
+      <li class="by-date">By date
+        <ul>
+          <li class="today">Today</li>
+          <li class="this week">This week</li>
+        </ul>
+      </li>
+      <li class="by-priority">By priority level
+        <ul>
+          <li class="high">High</li>
+          <li class="medium">Medium</li>
+          <li class="low">Low</li>
+        </ul>
+      </li>
+      <li class="lists">Lists
+        <ul></ul>
+      </li>
+    </ul>
+    <main>
+      <h1>My list</h1>
+    </main>
+  </section>
+  <script src="main.js"></script>
+</body>
+</html>
