@@ -1,20 +1,45 @@
+body {
+  font-family: "Poppins", sans-serif; }
+
+li {
+  cursor: pointer; }
+
 nav {
   top: 0;
   left: 0;
   right: 0;
-  background-color: pink; }
+  z-index: 10;
+  padding: 10px;
+  background-color: #fbf290; }
   nav img {
     height: 70px; }
+  nav li {
+    padding: 5px; }
+
+.container {
+  height: 100vh; }
+
+.sidebar {
+  padding-top: 100px;
+  background-color: #f3f3f3; }
+  .sidebar li {
+    padding: 10px; }
+
+main {
+  padding-top: 100px;
+  flex-grow: 1;
+  text-align: center; }
+  main i {
+    padding: 3px; }
 
 @media (min-width: 576px) {
   .add-items {
     display: flex; }
 
-  .fa-plus {
+  .nav-plus {
     display: none !important; }
 
   .sidebar {
-    display: block;
-    margin-top: 100px; } }
+    display: block; } }
 
 /*# sourceMappingURL=style.css.map */

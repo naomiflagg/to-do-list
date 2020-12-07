@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To Do List</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="flaggrid.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/63e040079e.js" crossorigin="anonymous"></script>
@@ -11,34 +13,54 @@
 <body>
   <nav class="position-fixed flex justify-content-between align-items-center">
     <img src="logo.png" alt="to do logo">
-    <i class="fas fa-plus"></i>
+    <i class="nav-plus fas fa-plus"></i>
     <ul class="add-items no-display">
-      <li>New list</li>
-      <li>New task</li>
+      <li class="new-list">New list</li>
+      <li>|</li>
+      <li class="new-task">New task</li>
     </ul>
   </nav>
-  <section class="flex">
+  <section class="container flex">
     <ul class="sidebar no-display">
       <li class="all">All</li>
-      <li class="by-date">By date
-        <ul>
+      <li class="by-date drop-down">By date
+        <i class="fas fa-caret-down"></i>
+        <ul class="no-display">
           <li class="today">Today</li>
           <li class="this week">This week</li>
         </ul>
       </li>
-      <li class="by-priority">By priority level
-        <ul>
+      <li class="by-priority drop-down">By priority level
+        <i class="fas fa-caret-down"></i>
+        <ul class="no-display">
           <li class="high">High</li>
           <li class="medium">Medium</li>
           <li class="low">Low</li>
         </ul>
       </li>
-      <li class="lists">Lists
+      <li class="lists drop-down">Lists
+        <i class="fas fa-caret-down"></i>
         <ul></ul>
       </li>
     </ul>
     <main>
-      <h1>My list</h1>
+      <h1 class="f-30">All</h1>
+      <h2 class="new-list"><i class="fas fa-plus"></i>New list</h2>
+      <h2 class="new-task"><i class="fas fa-plus"></i>New task</h2>
+      <form class="new-task-form no-display">
+        <label for="task"></label>
+        <input type="text" id="task" placeholder="Task" required>
+        <label for="details"></label>
+        <textarea id="details">Details</textarea>
+        <label for="due-date"></label>
+        <input type="date" id="due-date">
+        <label for="low">Low</label>
+        <input type="radio" id="low" name="priority" value="low">
+        <label for="medium">Medium</label>
+        <input type="radio" id="medium" name="priority" value="medium">
+        <label for="high">high</label>
+        <input type="radio" id="high" name="priority" value="high">
+      </form>
     </main>
   </section>
   <script src="main.js"></script>
