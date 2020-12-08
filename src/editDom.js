@@ -1,6 +1,6 @@
-const editDom = (() => {
-  const tasks = [];
-  
+import taskData from './taskData'
+
+const editDom = (() => {  
   return {
     toggleDisplay(element) {
     element.classList.toggle('no-display');
@@ -11,44 +11,49 @@ const editDom = (() => {
     },
 
     addTask(task) {
-      tasks.push(task)
       let taskList = document.querySelector('.tasks');
       let newTask = document.createElement('tr');
       let checkWrap = document.createElement('td');
       let input = document.createElement('input');
-      let label = document.createElement('label');
+      let taskName = document.createElement('td');
       let date = document.createElement('td');
       let ex = document.createElement('td');
       let edit = document.createElement('td');
       taskList.appendChild(newTask);
       newTask.appendChild(checkWrap);
       checkWrap.appendChild(input);
-      checkWrap.appendChild(label);
+      newTask.appendChild(taskName);
       newTask.appendChild(date);
       newTask.appendChild(edit);
       newTask.appendChild(ex);
-      let id = tasks.indexOf(task);
-      newTask.setAttribute('class', id)
+      let id = taskData.getIndex(task);
+      newTask.dataset.value = id;
+      newTask.classList.add('task')
       input.setAttribute('type', 'checkbox');
-      input.setAttribute('class', 'checkbox');
-      input.setAttribute('id', id)
-      label.setAttribute('for', id)
-      label.textContent = task.name;
+      input.classList.add('checkbox');
+      taskName.textContent = task.name;
       date.textContent = task.dueDate;
       ex.textContent = 'Delete';
       edit.textContent = 'Edit';
-      edit.setAttribute('class', 'edit-task');
-      ex.setAttribute('class', 'delete-task');
+      edit.classList.add('edit-task');
+      ex.classList.add('delete-task');
+      newTask.classList.add(task.priority)
     },
 
     removeTask(task) {
-      let id = task.classList;
-      tasks.splice(id, 1);
       task.remove();
+      this.recalibrateIndex();
+    },
+
+    recalibrateIndex() {
+      let tasks = document.querySelectorAll('.task');
+      let counter = 0;
+      tasks.forEach((task) => {
+        task.dataset.value = counter;
+        counter ++;
+      })
     }
   }
 })();
-
-//if i remove tasks, need to update the ids of the index. make sure they're updated
 
 export default editDom

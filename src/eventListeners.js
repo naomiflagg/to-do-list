@@ -1,5 +1,5 @@
 import editDom from './editDom'
-import getUserInfo from './getUserInput'
+import taskData from './taskData'
 
 const getSelectors = () => {
   document.addEventListener('click', (e) => {
@@ -16,15 +16,20 @@ const getSelectors = () => {
         break;
       case elem.classList.contains('submit'):
         e.preventDefault();
-        let task = getUserInfo(elem.parentNode);
-        editDom.addTask(task);
-        editDom.toggleDisplay(document.querySelector('.new-task-form'));
+        let newTask = taskData.getInput(elem.parentNode);
+        taskData.addTask(newTask);
+        editDom.addTask(newTask);
+        let form = document.querySelector('.new-task-form');
+        form.reset();
+        editDom.toggleDisplay(form);
         break;
       case elem.classList.contains('checkbox'):
         editDom.toggleStrikethrough(elem.parentNode.parentNode);
         break;
       case elem.classList.contains('delete-task'):
-        editDom.removeTask(elem.parentNode);
+        let deletableTask = elem.parentNode;
+        taskData.removeTask(deletableTask);
+        editDom.removeTask(deletableTask);
         break;
     }
   })

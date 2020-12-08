@@ -79,10 +79,10 @@ th {
   text-align: left;
 }
 
-table tr:first-child {
+table tr:nth-child(2) {
   column-span: 10;
 }
 
-table tr:nth-child(2) {
+table tr:nth-child(3) {
   column-span: 5;
 }
