@@ -5,3 +5,6 @@ const createTask = ({ name, details, dueDate, list, priority }) => ({
   list,
   priority
 });
+
+
+export default createTask

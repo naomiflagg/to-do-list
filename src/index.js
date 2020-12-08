@@ -1,3 +1,3 @@
-import getSelectors from './editDom'
+import getSelectors from './eventListeners'
 
 getSelectors();
