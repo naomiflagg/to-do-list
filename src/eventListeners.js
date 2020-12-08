@@ -20,6 +20,12 @@ const getSelectors = () => {
         editDom.addTask(task);
         editDom.toggleDisplay(document.querySelector('.new-task-form'));
         break;
+      case elem.classList.contains('checkbox'):
+        editDom.toggleStrikethrough(elem.parentNode.parentNode);
+        break;
+      case elem.classList.contains('delete-task'):
+        editDom.removeTask(elem.parentNode);
+        break;
     }
   })
 };
