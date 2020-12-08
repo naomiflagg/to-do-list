@@ -27,10 +27,13 @@ nav {
 
 main {
   padding-top: 100px;
-  flex-grow: 1;
-  text-align: center; }
+  flex-grow: 1; }
+  main h1 {
+    text-align: center; }
   main i {
     padding: 3px; }
+  main li {
+    padding: 5px; }
 
 @media (min-width: 576px) {
   .add-items {
