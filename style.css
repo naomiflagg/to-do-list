@@ -4,6 +4,9 @@ body {
 li {
   cursor: pointer; }
 
+.strikethrough {
+  text-decoration: line-through; }
+
 nav {
   top: 0;
   left: 0;
@@ -44,5 +47,13 @@ main {
 
   .sidebar {
     display: block; } }
+table {
+  width: 70%; }
+
+table tr:first-child {
+  column-span: 10; }
+
+table tr:nth-child(2) {
+  column-span: 5; }
 
 /*# sourceMappingURL=style.css.map */
