@@ -39,10 +39,17 @@ nav {
 main {
   padding-top: 100px;
   flex-grow: 1;
-  text-align: center;
+
+  h1 {
+    text-align: center;
+  }
 
   i {
     padding: 3px;
+  }
+
+  li {
+    padding: 5px;
   }
 }
 
