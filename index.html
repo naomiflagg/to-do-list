@@ -13,7 +13,7 @@
 <body>
   <nav class="position-fixed flex justify-content-between align-items-center">
     <img src="logo.png" alt="to do logo">
-    <i class="nav-plus fas fa-plus"></i>
+    <i class="nav-plus fas fa-plus new-task"></i>
     <ul class="add-items no-display">
       <li class="new-list">New list</li>
       <li>|</li>
@@ -38,7 +38,7 @@
       </li>
     </ul>
     <main>
-      <h1 class="f-30 no-display center">All</h1>
+      <h1 class="f-30 no-display center">All tasks</h1>
       <table class="tasks center">
         <tr class="table-hdrs no-display">
           <th>Done?</th>
@@ -48,6 +48,16 @@
           <th>Delete</th>
         </tr>
       </table>
+      <section class="task-modal no-display position-fixed">
+        <div class="flex justify-content-between">
+          <header class="task-name-modal"></header>
+          <div class="close">&times;</div>
+        </div>
+        <p>Details: <span class="details-modal"></span></p>
+        <p>Due date: <span class="due-date-modal"></span></p>
+        <p>List: <span class="list-modal"></span></p>
+        <p>Priority: <span class="priority-modal"></span></p>
+      </section>
       <h2 class="new-list center"><i class="fas fa-plus"></i>New list</h2>
       <h2 class="new-task center"><i class="fas fa-plus"></i>New task</h2>
       <form class="new-task-form no-display grid-sm center">
@@ -58,7 +68,7 @@
         <datalist id="select-list"></datalist>
         <fieldset class="grid-sm-6">
           Priority:
-          <input type="radio" id="low" name="priority" value="low">
+          <input type="radio" id="low" name="priority" value="low" checked>
           <label for="low">Low</label>
           <input type="radio" id="medium" name="priority" value="medium">
           <label for="medium">Medium</label>
