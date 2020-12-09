@@ -2,7 +2,11 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-li {
+h2,
+li,
+i,
+.submit-task,
+.submit-list {
   cursor: pointer;
 }
 
@@ -57,6 +61,43 @@ main {
   }
 }
 
+th {
+  text-align: left;
+}
+
+table tr:nth-child(2) {
+  column-span: 10;
+}
+
+table tr:nth-child(3) {
+  column-span: 5;
+}
+
+h2 {
+  width: 100px;
+}
+
+.new-task-form {
+  grid-gap: 10px;
+}
+
+@media (max-width: 576px) {
+  .new-task-form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+table,
+.new-task-form {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.no-display {
+  display: none;
+}
+
 @media (min-width: 576px) {
   .add-items {
     display: flex;
@@ -69,20 +110,4 @@ main {
   .sidebar {
     display: block;
   }
-}
-
-table {
-  width: 70%;
-}
-
-th {
-  text-align: left;
-}
-
-table tr:nth-child(2) {
-  column-span: 10;
-}
-
-table tr:nth-child(3) {
-  column-span: 5;
 }

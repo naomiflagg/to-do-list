@@ -1,4 +1,5 @@
 import taskData from './taskData'
+import listData from './listData'
 
 const editDom = (() => {  
   return {
@@ -11,33 +12,72 @@ const editDom = (() => {
     },
 
     addTask(task) {
-      let taskList = document.querySelector('.tasks');
-      let newTask = document.createElement('tr');
-      let checkWrap = document.createElement('td');
-      let input = document.createElement('input');
-      let taskName = document.createElement('td');
-      let date = document.createElement('td');
-      let ex = document.createElement('td');
-      let edit = document.createElement('td');
-      taskList.appendChild(newTask);
-      newTask.appendChild(checkWrap);
-      checkWrap.appendChild(input);
-      newTask.appendChild(taskName);
-      newTask.appendChild(date);
-      newTask.appendChild(edit);
-      newTask.appendChild(ex);
-      let id = taskData.getIndex(task);
-      newTask.dataset.value = id;
-      newTask.classList.add('task')
-      input.setAttribute('type', 'checkbox');
-      input.classList.add('checkbox');
-      taskName.textContent = task.name;
-      date.textContent = task.dueDate;
-      ex.textContent = 'Delete';
-      edit.textContent = 'Edit';
-      edit.classList.add('edit-task');
-      ex.classList.add('delete-task');
-      newTask.classList.add(task.priority)
+      const newTask = document.createElement('tr');
+      
+      const tableRow = (() => {
+        const taskList = document.querySelector('.tasks');
+        const id = taskData.getIndex(task);
+        if (id === 0) {
+          this.toggleDisplay(document.querySelector('.table-hdrs'));
+          this.toggleDisplay(document.querySelector('h1'));
+        }
+        taskList.appendChild(newTask);
+        newTask.classList.add(task.priority, 'task');
+        newTask.dataset.value = id;
+      })();
+      
+      const checkboxCol = (() => {
+        const checkWrap = document.createElement('td');
+        const input = document.createElement('input');
+        newTask.appendChild(checkWrap);
+        checkWrap.appendChild(input);
+        input.setAttribute('type', 'checkbox');
+        input.classList.add('checkbox');
+      })();
+
+      const taskCol = (() => {
+        const taskName = document.createElement('td');
+        newTask.appendChild(taskName);
+        taskName.textContent = task.name;
+      })();
+      
+      const dateCol = (() => {
+        const date = document.createElement('td');
+        newTask.appendChild(date);
+        date.textContent = task.dueDate;
+      })();
+
+      const editCol = (() => {
+        const editWrap = document.createElement('td');
+        const edit = document.createElement('i');
+        newTask.appendChild(editWrap);
+        editWrap.appendChild(edit)
+        edit.classList.add('fas', 'fa-edit', 'edit-task');
+      })();
+      
+      const deleteCol = (() => {
+        const exWrap = document.createElement('td');
+        const ex = document.createElement('i')
+        newTask.appendChild(exWrap);
+        exWrap.appendChild(ex);
+        ex.classList.add('fas', 'fa-trash-alt', 'delete-task')
+      })();
+    },
+
+    addList(list) {
+      const option = document.createElement('option')
+      const selectList = document.querySelector('#select-list');
+      option.textContent = list;
+      const selectList2 = document.querySelector('#select-list2');
+      const option2 = document.createElement('option')
+      option2.textContent = list;
+      selectList.appendChild(option);
+      selectList2.appendChild(option2);
+
+      const listListItem = document.createElement('li');
+      const listList = document.querySelector('.lists');
+      listList.appendChild(listListItem);
+      listListItem.textContent = list;
     },
 
     removeTask(task) {
@@ -47,11 +87,16 @@ const editDom = (() => {
 
     recalibrateIndex() {
       let tasks = document.querySelectorAll('.task');
-      let counter = 0;
-      tasks.forEach((task) => {
-        task.dataset.value = counter;
-        counter ++;
-      })
+      if (tasks.length > 0) {
+        let counter = 0;
+        tasks.forEach((task) => {
+          task.dataset.value = counter;
+          counter ++;
+        })
+      } else {
+        this.toggleDisplay(document.querySelector('.table-hdrs'));
+        this.toggleDisplay(document.querySelector('h1'));
+      }
     }
   }
 })();
