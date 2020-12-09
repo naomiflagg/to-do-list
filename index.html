@@ -23,55 +23,60 @@
   <section class="container flex">
     <ul class="sidebar no-display">
       <li class="all">All</li>
-      <li class="by-date drop-down">By date
+      <li class="drop-down">By date
         <i class="fas fa-caret-down"></i>
-        <ul class="no-display">
+        <ul class="by-date no-display">
           <li class="today">Today</li>
           <li class="this week">This week</li>
         </ul>
       </li>
-      <li class="by-priority drop-down">By priority level
+      <li class="drop-down">By priority level
         <i class="fas fa-caret-down"></i>
-        <ul class="no-display">
+        <ul class="by-priority no-display">
           <li class="high">High</li>
           <li class="medium">Medium</li>
           <li class="low">Low</li>
         </ul>
       </li>
-      <li class="lists drop-down">Lists
+      <li class="drop-down">Lists
         <i class="fas fa-caret-down"></i>
-        <ul></ul>
+        <ul class="lists"></ul>
       </li>
     </ul>
     <main>
-      <h1 class="f-30">All</h1>
-      <table class="tasks">
-        <tr>
-          <th></th>
+      <h1 class="f-30 no-display">All</h1>
+      <table class="tasks center">
+        <tr class="table-hdrs no-display">
+          <th>Done?</th>
           <th>Task</th>
           <th>Due date</th>
-          <th></th>
-          <th></th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </table>
-      <h2 class="new-list"><i class="fas fa-plus"></i>New list</h2>
-      <h2 class="new-task"><i class="fas fa-plus"></i>New task</h2>
-      <form class="new-task-form no-display">
-        <label for="task"></label>
-        <input type="text" id="task" placeholder="Task" required>
-        <label for="details"></label>
-        <textarea id="details" placeholder="Details"></textarea>
-        <label for="due-date"></label>
-        <input type="date" id="due-date">
-        <label for="list"></label>
-        <input type="text" id="list" placeholder="List">
-        <label for="low">Low</label>
-        <input type="radio" id="low" name="priority" value="low">
-        <label for="medium">Medium</label>
-        <input type="radio" id="medium" name="priority" value="medium">
-        <label for="high">high</label>
-        <input type="radio" id="high" name="priority" value="high">
-        <input type="submit" class="submit">
+      <h2 class="new-list center"><i class="fas fa-plus"></i>New list</h2>
+      <h2 class="new-task center"><i class="fas fa-plus"></i>New task</h2>
+      <form class="new-task-form no-display grid-sm">
+        <input class="grid-sm-12" type="text" placeholder="Task" required>
+        <textarea class="grid-sm-8" placeholder="Details"></textarea>
+        <input class="grid-sm-4" type="date">
+        <input class="grid-sm-6" type="text" list="select-list" placeholder="List">
+        <datalist id="select-list"></datalist>
+        <fieldset class="grid-sm-6">
+          Priority:
+          <input type="radio" id="low" name="priority" value="low">
+          <label for="low">Low</label>
+          <input type="radio" id="medium" name="priority" value="medium">
+          <label for="medium">Medium</label>
+          <input type="radio" id="high" name="priority" value="high">
+          <label for="high">High</label>
+        </fieldset> 
+        <input type="submit" class="submit-task">
+      </form>
+      <form class="new-list-form no-display">
+        <input type="text" list="select-list2" placeholder="List">
+        <datalist id="select-list2"></datalist>
+        <input type="submit" class="submit-list">
       </form>
     </main>
   </section>
