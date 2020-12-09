@@ -4,7 +4,52 @@ import listData from './listData'
 const editDom = (() => {  
   return {
     toggleDisplay(element) {
-    element.classList.toggle('no-display');
+      element.classList.toggle('no-display');
+    },
+
+    removeDisplay(element) {
+      element.classList.add('no-display');
+    },
+
+    displayAll() {
+      const tasks = document.querySelectorAll('.task');
+      tasks.forEach((task) => {
+        task.classList.remove('no-display');
+      })
+    },
+
+    displayOnly(className) {
+      const tasks = document.querySelectorAll('.task');
+      tasks.forEach((task) => {
+        if (task.classList.contains(className)) {
+          task.classList.remove('no-display');
+        } else {
+          this.removeDisplay(task);
+        }
+      })
+    },
+    
+    filterDates(date) {
+      const tasks = document.querySelectorAll('.task');
+      tasks.forEach((task => {
+        if (task.childNodes[2].textContent === date) {
+          task.classList.remove('no-display');
+        } else {
+          this.removeDisplay(task);
+        }
+      }))
+    },
+
+    filterLists(list) {
+      const tasks = document.querySelectorAll('.task');
+      tasks.forEach((task) => {
+        const taskObj = taskData.getTask(task);
+        if (taskObj.list === list) {
+          task.classList.remove('no-display');
+        } else {
+          this.removeDisplay(task);
+        }
+      })
     },
 
     toggleStrikethrough(element) {
@@ -78,6 +123,7 @@ const editDom = (() => {
       const listList = document.querySelector('.lists');
       listList.appendChild(listListItem);
       listListItem.textContent = list;
+      listListItem.classList.add('list');
     },
 
     removeTask(task) {

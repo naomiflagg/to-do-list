@@ -32,8 +32,13 @@ const getSelectors = () => {
           listData.addList(editList);
           editDom.addList(editList)
         };
-        const replaceIndex = taskData.replaceTask(targetTask, editedTask);
-        editDom.replaceTask(replaceIndex, editedTask);
+        if (taskData.tasks.includes(targetTask)) {
+          const replaceIndex = taskData.replaceTask(targetTask, editedTask);
+          editDom.replaceTask(replaceIndex, editedTask);
+        } else {
+          taskData.addTask(editedTask);
+          editDom.addTask(editedTask);
+        }
         editTaskForm.reset();
         editDom.toggleDisplay(editTaskForm);
         editDom.toggleDisplay(elem);
@@ -77,6 +82,25 @@ const getSelectors = () => {
         editDom.toggleDisplay(document.querySelector('.new-task-form'));
         targetTask = taskData.getTask(elem.parentNode.parentNode);
         editDom.populateForm(targetTask);
+        break;
+      case elem.classList.contains('all'):
+        editDom.displayAll();
+        break;
+      case elem.classList.contains('high-tasks'):
+        editDom.displayOnly('high');
+        break;
+      case elem.classList.contains('low-tasks'):
+        editDom.displayOnly('low');
+        break;
+      case elem.classList.contains('medium-tasks'):
+        editDom.displayOnly('medium');
+        break;
+      case elem.classList.contains('today'):
+        const today = new Date().toISOString().slice(0, 10);
+        editDom.filterDates(today);
+        break;
+      case elem.classList.contains('list'):
+        editDom.filterLists(elem.textContent);
         break;
     }
   })
