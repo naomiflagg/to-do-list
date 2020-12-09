@@ -6,6 +6,7 @@ import listData from './listData'
 
 
 const getSelectors = () => {
+  let targetTask;
   document.addEventListener('click', (e) => {
     const elem = e.target
     switch (true) {
@@ -16,24 +17,41 @@ const getSelectors = () => {
         editDom.toggleDisplay(elem.nextElementSibling);
         break;
       case elem.classList.contains('new-task'):
+        editDom.toggleDisplay(document.querySelector('.submit-task'))
         editDom.toggleDisplay(document.querySelector('.new-task-form'));
         break;
       case elem.classList.contains('new-list'):
         editDom.toggleDisplay(document.querySelector('.new-list-form'));
         break;
+      case elem.classList.contains('submit-task-edit'):
+        e.preventDefault();
+        const editTaskForm = document.querySelector('.new-task-form');
+        const editedTask = taskData.getInput(editTaskForm);
+        const editList = editedTask.list
+        if (!listData.listExists(editList)) {
+          listData.addList(editList);
+          editDom.addList(editList)
+        };
+        const replaceIndex = taskData.replaceTask(targetTask, editedTask);
+        editDom.replaceTask(replaceIndex, editedTask);
+        editTaskForm.reset();
+        editDom.toggleDisplay(editTaskForm);
+        editDom.toggleDisplay(elem);
+        break;
       case elem.classList.contains('submit-task'):
         e.preventDefault();
         const taskForm = document.querySelector('.new-task-form');
-        const newTask = taskData.getInput(taskForm);
-        const list = newTask.list
+        targetTask = taskData.getInput(taskForm);
+        const list = targetTask.list
         if (!listData.listExists(list)) {
           listData.addList(list);
           editDom.addList(list)
         };
-        taskData.addTask(newTask);
-        editDom.addTask(newTask);
+        taskData.addTask(targetTask);
+        editDom.addTask(targetTask);
         taskForm.reset();
         editDom.toggleDisplay(taskForm);
+        editDom.toggleDisplay(elem);
         break;
       case elem.classList.contains('submit-list'):
         e.preventDefault();
@@ -50,13 +68,16 @@ const getSelectors = () => {
         editDom.toggleStrikethrough(elem.parentNode.parentNode);
         break;
       case elem.classList.contains('delete-task'):
-        const deletableTask = elem.parentNode;
+        const deletableTask = elem.parentNode.parentNode;
         taskData.removeTask(deletableTask);
         editDom.removeTask(deletableTask);
         break;
       case elem.classList.contains('edit-task'):
-        const editableTask = elem.parentNode;
-        taskData.getInput(editableTask);
+        editDom.toggleDisplay(document.querySelector('.submit-task-edit'));
+        editDom.toggleDisplay(document.querySelector('.new-task-form'));
+        targetTask = taskData.getTask(elem.parentNode.parentNode);
+        editDom.populateForm(targetTask);
+        break;
     }
   })
 };

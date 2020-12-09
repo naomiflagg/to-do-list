@@ -16,14 +16,14 @@ const editDom = (() => {
       
       const tableRow = (() => {
         const taskList = document.querySelector('.tasks');
-        const id = taskData.getIndex(task);
-        if (id === 0) {
+        const taskId = taskData.getIndex(task);
+        if (taskId === 0) {
           this.toggleDisplay(document.querySelector('.table-hdrs'));
           this.toggleDisplay(document.querySelector('h1'));
         }
         taskList.appendChild(newTask);
         newTask.classList.add(task.priority, 'task');
-        newTask.dataset.value = id;
+        newTask.dataset.value = taskId;
       })();
       
       const checkboxCol = (() => {
@@ -86,7 +86,7 @@ const editDom = (() => {
     },
 
     recalibrateIndex() {
-      let tasks = document.querySelectorAll('.task');
+      const tasks = document.querySelectorAll('.task');
       if (tasks.length > 0) {
         let counter = 0;
         tasks.forEach((task) => {
@@ -97,6 +97,23 @@ const editDom = (() => {
         this.toggleDisplay(document.querySelector('.table-hdrs'));
         this.toggleDisplay(document.querySelector('h1'));
       }
+    },
+
+    populateForm(task) {
+      const editTaskForm = document.querySelector('.new-task-form');
+      let counter = 0;
+      for (const property in task) {
+        editTaskForm.elements[counter].value = task[property];
+        counter++;
+      }
+    },
+  
+    replaceTask(index, newTask) {
+      const oldListing = document.querySelector(`[data-value="${index}"]`);
+      const oldName = oldListing.childNodes[1];
+      const oldDate = oldListing.childNodes[2];
+      oldName.textContent = newTask.name;
+      oldDate.textContent = newTask.dueDate;
     }
   }
 })();

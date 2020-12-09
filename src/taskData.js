@@ -14,13 +14,24 @@ const taskData = (() => {
       return this.tasks.indexOf(task);
     },
 
+    getTask(task) {
+      const targetTaskId = task.dataset.value;
+      return this.tasks[targetTaskId]; 
+    },
+
     addTask(task) {
       this.tasks.push(task);
     },
 
     removeTask(task) {
-      let id = task.dataset.value;
+      const id = task.dataset.value;
       this.tasks.splice(id, 1);
+    },
+
+    replaceTask(oldTask, newTask) {
+      const index = this.getIndex(oldTask);
+      this.tasks[index] = newTask;
+      return index;
     }
   }
 })();
