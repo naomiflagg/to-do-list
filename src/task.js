@@ -1,4 +1,4 @@
-const createTask = ({ name, details, dueDate, list, priority }) => ({
+const createTask = ({ name, details, dueDate, list, priority = low }) => ({
   name,
   details,
   dueDate,

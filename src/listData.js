@@ -12,7 +12,7 @@ const listData = (() => {
     },
 
     listExists(list) {
-      if (this.lists.includes(list)) {
+      if (this.lists.includes(list) || list === "") {
         return true
       }
     }

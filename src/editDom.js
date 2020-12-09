@@ -52,6 +52,11 @@ const editDom = (() => {
       })
     },
 
+    changeHeading(text) {
+      const h1 = document.querySelector('h1');
+      h1.textContent = text;
+    },
+
     toggleStrikethrough(element) {
       element.classList.toggle('strikethrough');
     },
@@ -84,6 +89,7 @@ const editDom = (() => {
         const taskName = document.createElement('td');
         newTask.appendChild(taskName);
         taskName.textContent = task.name;
+        taskName.classList.add('task-name')
       })();
       
       const dateCol = (() => {
@@ -143,6 +149,14 @@ const editDom = (() => {
         this.toggleDisplay(document.querySelector('.table-hdrs'));
         this.toggleDisplay(document.querySelector('h1'));
       }
+    },
+
+    populateModal(task) {
+      document.querySelector('.task-name-modal').textContent = task.name;
+      document.querySelector('.details-modal').textContent = task.details;
+      document.querySelector('.due-date-modal').textContent = task.dueDate;
+      document.querySelector('.list-modal').textContent = task.list;
+      document.querySelector('.priority-modal').textContent = task.priority;
     },
 
     populateForm(task) {

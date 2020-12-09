@@ -72,6 +72,16 @@ const getSelectors = () => {
       case elem.classList.contains('checkbox'):
         editDom.toggleStrikethrough(elem.parentNode.parentNode);
         break;
+      case elem.classList.contains('task-name'):
+        const modal = document.querySelector('.task-modal');
+        targetTask = taskData.getTask(elem.parentNode);
+        editDom.populateModal(targetTask);
+        editDom.toggleDisplay(modal);
+        break;
+      case elem.classList.contains('close'):
+        const modalClose = document.querySelector('.task-modal');
+        editDom.toggleDisplay(modalClose);
+        break;
       case elem.classList.contains('delete-task'):
         const deletableTask = elem.parentNode.parentNode;
         taskData.removeTask(deletableTask);
@@ -85,22 +95,29 @@ const getSelectors = () => {
         break;
       case elem.classList.contains('all'):
         editDom.displayAll();
+        editDom.changeHeading('All tasks')
         break;
       case elem.classList.contains('high-tasks'):
         editDom.displayOnly('high');
+        editDom.changeHeading('High priority tasks')
         break;
       case elem.classList.contains('low-tasks'):
         editDom.displayOnly('low');
+        editDom.changeHeading('Low priority tasks')
         break;
       case elem.classList.contains('medium-tasks'):
         editDom.displayOnly('medium');
+        editDom.changeHeading('Medium priority tasks')
         break;
       case elem.classList.contains('today'):
         const today = new Date().toISOString().slice(0, 10);
         editDom.filterDates(today);
+        editDom.changeHeading('Today');
         break;
       case elem.classList.contains('list'):
-        editDom.filterLists(elem.textContent);
+        const selectedList = elem.textContent;
+        editDom.filterLists(selectedList);
+        editDom.changeHeading(selectedList);
         break;
     }
   })
