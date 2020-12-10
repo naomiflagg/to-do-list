@@ -1,3 +1,6 @@
+/* Global styles
+-----------------------------------------------*/
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -28,6 +31,9 @@ i:hover,
   text-decoration: line-through;
 }
 
+/* Nav bar
+-----------------------------------------------*/
+
 nav {
   top: 0;
   left: 0;
@@ -45,10 +51,12 @@ nav {
   }
 }
 
+// Container for main content (inc. sidebar
 .container {
   height: 100vh;
 }
 
+// Sidebar styles
 .sidebar {
   padding-top: 100px;
   height: 100%;
@@ -59,13 +67,12 @@ nav {
   }
 }
 
+/* Main content (not inc. sidebar)
+-----------------------------------------------*/
+
 main {
   padding-top: 100px;
   flex-grow: 1;
-
-  h1 {
-    text-align: center;
-  }
 
   i {
     padding: 3px;
@@ -75,6 +82,19 @@ main {
     padding: 5px;
   }
 }
+
+h1 {
+  text-align: center;
+}
+
+h1,
+table,
+.new-task-form {
+  width: 70%;
+}
+
+/* Table styles
+-----------------------------------------------*/
 
 table {
   margin-bottom: 20px;
@@ -103,6 +123,14 @@ table tr {
   height: 25px;
   border-bottom: 1px solid #909206;
 }
+
+// High priority task coloring
+.high {
+  color: #a00505;
+}
+
+/* Task modal styles
+-----------------------------------------------*/
 
 .task-modal {
   z-index: 10;
@@ -142,9 +170,13 @@ table tr {
   cursor: pointer;
 }
 
+// New task and new list heading styles
 h2 {
   width: 100px;
 }
+
+/* New task / new list forms
+-----------------------------------------------*/
 
 .new-task-form {
   grid-gap: 10px;
@@ -174,11 +206,8 @@ textarea {
   resize: none;
 }
 
-h1,
-table,
-.new-task-form {
-  width: 70%;
-}
+/* Media adjustments for extra small screens
+-----------------------------------------------*/
 
 @media (max-width: 576px) {
   .new-task-form {
@@ -202,13 +231,12 @@ table,
   }
 }
 
-.high {
-  color: #a00505;
-}
-
 .no-display {
   display: none;
 }
+
+/* Display media adjustments for extra small screens
+-----------------------------------------------*/
 
 @media (min-width: 576px) {
   .add-items {
