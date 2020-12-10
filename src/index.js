@@ -4,9 +4,7 @@ import listData from './listData'
 
 refresh();
 
-//turn each response into function in separate module?
-
-const getSelectors = (() => {
+const eventListeners = (() => {
   let targetTask;
   document.addEventListener('click', (e) => {
     const elem = e.target
@@ -88,6 +86,7 @@ const getSelectors = (() => {
       case elem.classList.contains('delete-task'):
         const deletableTask = elem.parentNode.parentNode;
         taskData.removeTask(deletableTask);
+        populateStorage();
         editDom.removeTask(deletableTask);
         break;
       case elem.classList.contains('edit-task'):
@@ -152,4 +151,4 @@ function refresh() {
 
 // To do: 
 // - edit list functionality
-// -neaten event listeners page
+// - split event listeners into functions
