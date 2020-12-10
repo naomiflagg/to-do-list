@@ -3,7 +3,7 @@ const listData = (() => {
     lists: [],
 
     getInput(form) {
-      const list = form.elements[0].value
+      const list = form.elements[0].value;
       return list;
     },
 
@@ -13,10 +13,10 @@ const listData = (() => {
 
     listExists(list) {
       if (this.lists.includes(list) || list === "") {
-        return true
+        return true;
       }
-    }
-  }
-})()
+    },
+  };
+})();
 
 export default listData;

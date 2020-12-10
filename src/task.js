@@ -3,8 +3,7 @@ const createTask = ({ name, details, dueDate, list, priority = low }) => ({
   details,
   dueDate,
   list,
-  priority
+  priority,
 });
 
-
-export default createTask
+export default createTask;

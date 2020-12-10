@@ -1,12 +1,19 @@
-import createTask from './task'
+import createTask from "./task";
 
 const taskData = (() => {
   return {
     tasks: [],
 
     getInput(form) {
-      const priority = document.querySelector('input[name="priority"]:checked').value;
-      const task = createTask({name: form.elements[0].value, details: form.elements[1].value, dueDate: form.elements[2].value, list: form.elements[3].value, priority})
+      const priority = document.querySelector('input[name="priority"]:checked')
+        .value;
+      const task = createTask({
+        name: form.elements[0].value,
+        details: form.elements[1].value,
+        dueDate: form.elements[2].value,
+        list: form.elements[3].value,
+        priority,
+      });
       return task;
     },
 
@@ -16,7 +23,7 @@ const taskData = (() => {
 
     getTask(task) {
       const targetTaskId = task.dataset.value;
-      return this.tasks[targetTaskId]; 
+      return this.tasks[targetTaskId];
     },
 
     addTask(task) {
@@ -32,8 +39,8 @@ const taskData = (() => {
       const index = this.getIndex(oldTask);
       this.tasks[index] = newTask;
       return index;
-    }
-  }
+    },
+  };
 })();
 
-export default taskData
+export default taskData;
